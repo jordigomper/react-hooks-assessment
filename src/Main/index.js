@@ -1,5 +1,7 @@
 import React from "react";
+import { APIProvider } from "./context";
 import styled from "@emotion/styled";
+import Home from "./components/Home";
 
 const Body = styled.div`
   display: flex;
@@ -16,8 +18,10 @@ const Header = styled.h1`
 function App() {
   return (
     <Body>
-      <Header>nice to meet you!</Header>
-      <div className="App">Hola Mundo!</div>
+      <APIProvider>
+        <Header>nice to meet you!</Header>
+        <Home />
+      </APIProvider>
     </Body>
   );
 }

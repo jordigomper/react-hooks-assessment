@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { APIContext } from "../context";
 
 const Home = () => {
-  return <div>Home</div>;
+  const { value } = useContext(APIContext);
+
+  return <div>{value}</div>;
 };
 
 export default Home;
