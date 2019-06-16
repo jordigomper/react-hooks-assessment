@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Image from "./Image";
 import styled from "@emotion/styled";
 
 const CardStyle = styled.div`
@@ -8,14 +9,10 @@ const CardStyle = styled.div`
   flex-direction: column;
 `;
 
-const Img = styled.img`
-  width: 100%;
-`;
-
 const Card = ({ id, thumbnail, name, age, friends, professions }) => {
   return (
     <CardStyle>
-      <Img src={thumbnail} alt={thumbnail} title={thumbnail} />
+      <Image src={thumbnail} alt={name} title={name} />
       {name}
     </CardStyle>
   );
