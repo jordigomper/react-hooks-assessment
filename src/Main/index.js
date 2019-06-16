@@ -1,28 +1,30 @@
 import React from "react";
-import { APIProvider } from "./context";
 import styled from "@emotion/styled";
+import { APIProvider } from "./context";
 import Home from "./components/Home";
-
-const Body = styled.div`
-  display: flex;
-  flex-direction: column;
-  justifi-content: center;
-`;
 
 const Header = styled.h1`
   width: 100%;
+  margin: 0;
   background-color: blue;
   text-align: center;
 `;
 
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  justifi-content: center;
+  align-self: center;
+`;
+
 function App() {
   return (
-    <Body>
+    <Main>
       <APIProvider>
         <Header>nice to meet you!</Header>
         <Home />
       </APIProvider>
-    </Body>
+    </Main>
   );
 }
 
