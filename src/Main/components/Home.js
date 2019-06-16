@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { APIContext } from "../context";
 
 const Home = () => {
-  const { value } = useContext(APIContext);
+  const habitants = useContext(APIContext);
 
-  return <div>{value}</div>;
+  return <div>{habitants.map(({ name }) => name)}</div>;
 };
 
 export default Home;
