@@ -10,18 +10,10 @@ const APIContext = createContext([]);
 
 const APIProvider = ({ children }) => {
   function reducer(state, action) {
-    const currentState = JSON.parse(JSON.stringify(state));
-
+    // const currentState = JSON.parse(JSON.stringify(state));
     switch (action.type) {
       case "fetch":
-        const professionsList = currentState.professions;
-        action.data.map(({ professions }) =>
-          professions.map(profession => {
-            const current = profession.trim().toLowerCase();
-            !professionsList.includes(current) && professionsList.push(current);
-          })
-        );
-        return { habitants: action.data, professions: professionsList };
+        return { habitants: action.data };
       default:
         return state;
     }
