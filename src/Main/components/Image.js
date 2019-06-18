@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
 const Img = styled.img`
-  width: 100%;
+  object-fit: cover;
+  height: 100px;
 `;
 
 const ImageCache = ({ src, alt, title }) => {

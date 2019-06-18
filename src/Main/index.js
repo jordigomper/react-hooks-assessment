@@ -13,7 +13,7 @@ const Header = styled.h1`
 const Main = styled.div`
   display: flex;
   flex-direction: column;
-  justifi-content: center;
+  justify-content: center;
   align-self: center;
 `;
 

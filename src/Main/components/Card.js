@@ -7,13 +7,19 @@ const CardStyle = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  p {
+    height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const Card = ({ id, thumbnail, name, age, friends, professions }) => {
   return (
     <CardStyle>
       <Image src={thumbnail} alt={name} title={name} />
-      {name}
+      <p>{name}</p>
     </CardStyle>
   );
 };
