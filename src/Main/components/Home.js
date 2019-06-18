@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "@emotion/styled";
 import { APIContext } from "../context";
 import Card from "./Card";
+import FilterPanel from "./FilterPanel";
 
 const SKIP_PAGINATION = 6;
 
@@ -15,12 +16,13 @@ const Grid = styled.div`
 `;
 
 const Home = () => {
-  const habitants = useContext(APIContext);
-
+  const { habitants, professions } = useContext(APIContext);
+  console.log(professions);
   const [loadMore, setLoadMore] = useState(SKIP_PAGINATION);
 
   return (
     <>
+      <FilterPanel professions={professions} />
       <Grid>
         {habitants.slice(0, loadMore).map(habitant => (
           <Card key={habitant.id} {...habitant} />
