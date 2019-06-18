@@ -8,13 +8,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const FilterPanel = ({ onChange }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    onChange(searchTerm);
-  }, [searchTerm]);
-
+const FilterPanel = ({ searchTerm, setSearchTerm }) => {
   return (
     <Container>
       <input

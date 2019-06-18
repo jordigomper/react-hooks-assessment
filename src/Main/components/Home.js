@@ -21,7 +21,7 @@ const PaginatorPanel = styled.div`
 
 const Home = () => {
   const { habitants } = useContext(APIContext);
-  const [filter, setFilter] = useState(SKIP_PAGINATION);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [page, setPage] = useState(SKIP_PAGINATION);
   const nextPage = () => setPage(page + SKIP_PAGINATION);
@@ -33,11 +33,24 @@ const Home = () => {
 
   return (
     <>
-      <FilterPanel onChange={setFilter} />
+      <FilterPanel searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
       <Grid>
-        {habitants.slice(page, page + SKIP_PAGINATION).map(habitant => (
-          <Card key={habitant.id} {...habitant} />
-        ))}
+        {habitants
+          .filter(({ professions }) =>
+            searchTerm.length > 0
+              ? professions.some(profession =>
+                  profession
+                    .trim()
+                    .toLowerCase()
+                    .includes(searchTerm)
+                )
+              : true
+          )
+          .slice(page, page + SKIP_PAGINATION)
+          .map(habitant => (
+            <Card key={habitant.id} {...habitant} />
+          ))}
       </Grid>
 
       <PaginatorPanel>
