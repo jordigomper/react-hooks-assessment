@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { APIContext } from "../context";
 import FilterPanel from "./FilterPanel";
 import Card from "./Card";
@@ -29,6 +29,10 @@ const Home = () => {
   const currentPage = page / SKIP_PAGINATION;
   const totalPages = Math.floor(habitants.length / SKIP_PAGINATION);
 
+  useEffect(() => {
+    setPage(SKIP_PAGINATION);
+  }, [searchTerm]);
+
   window.pa = page => setPage(page * SKIP_PAGINATION);
 
   return (
@@ -57,7 +61,7 @@ const Home = () => {
         <button onClick={prevPage} disabled={currentPage === 1}>
           previous
         </button>
-        {currentPage} / {totalPages}
+        {currentPage}
         <button onClick={nextPage} disabled={currentPage >= totalPages}>
           next
         </button>
