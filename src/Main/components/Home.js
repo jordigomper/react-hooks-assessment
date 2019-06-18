@@ -14,14 +14,22 @@ const Grid = styled.div`
   transition: heigth 12s;
 `;
 
+const PaginatorPanel = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const Home = () => {
   const { habitants } = useContext(APIContext);
-  const [page, setPage] = useState(SKIP_PAGINATION);
+  const [filter, setFilter] = useState(SKIP_PAGINATION);
 
+  const [page, setPage] = useState(SKIP_PAGINATION);
   const nextPage = () => setPage(page + SKIP_PAGINATION);
   const prevPage = () => setPage(page - SKIP_PAGINATION);
+  const currentPage = page / SKIP_PAGINATION;
+  const totalPages = Math.floor(habitants.length / SKIP_PAGINATION);
 
-  const [filter, setFilter] = useState(SKIP_PAGINATION);
+  window.pa = page => setPage(page * SKIP_PAGINATION);
 
   return (
     <>
@@ -31,12 +39,16 @@ const Home = () => {
           <Card key={habitant.id} {...habitant} />
         ))}
       </Grid>
-      {page / SKIP_PAGINATION} /{" "}
-      {Math.round(habitants.length / SKIP_PAGINATION)}
-      <button onClick={prevPage} disabled={page === SKIP_PAGINATION}>
-        ant
-      </button>
-      <button onClick={nextPage}>sig</button>
+
+      <PaginatorPanel>
+        <button onClick={prevPage} disabled={currentPage === 1}>
+          previous
+        </button>
+        {currentPage} / {totalPages}
+        <button onClick={nextPage} disabled={currentPage >= totalPages}>
+          next
+        </button>
+      </PaginatorPanel>
     </>
   );
 };
