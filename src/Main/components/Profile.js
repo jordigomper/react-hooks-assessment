@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { APIContext } from "../context";
+import { isArray, isString, isNumber } from "util";
 import Image from "./Image";
 import styled from "@emotion/styled";
-import { isArray, isString, isNumber } from "util";
 
 const Content = styled.div`
   margin: 5% 0 0 0;
@@ -41,8 +41,7 @@ const Profile = ({ id }) => {
             typeof habitant.id === "number") &&
           habitant.id.toString().trim() === id.toString().trim()
       );
-      const a = habitants[index];
-      index >= 0 ? setHabitant(a) : setHabitant("undefined");
+      index >= 0 ? setHabitant(habitants[index]) : setHabitant("undefined");
 
       setIsFeching(false);
     }
