@@ -8,6 +8,13 @@ import { usePaginator } from "../../module/hooks";
 import FilterPanel from "./FilterPanel";
 import { arrayExpression } from "@babel/types";
 
+// @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+//   /* Styles */
+//   }
+// @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+//   /* Styles */
+//   }
+
 const SKIP_PAGINATION = 6;
 
 const List = styled.div`

@@ -22,8 +22,8 @@ const Main = styled.div`
 function App() {
   return (
     <Main>
+      <Header>nice to meet you!</Header>
       <APIProvider>
-        <Header>nice to meet you!</Header>
         <Router>
           <Home exact path="/" />
           <Profile exact path="/profile/:id" />
