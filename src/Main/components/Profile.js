@@ -3,10 +3,7 @@ import PropTypes from "prop-types";
 import { APIContext } from "../context";
 import Image from "./Image";
 import styled from "@emotion/styled";
-import { isArray, isObject } from "util";
-import { navigate } from "@reach/router";
-
-const IGNORE_PROPS = ["id", "thumbnail", "friends"];
+import { isArray, isString, isNumber } from "util";
 
 const Content = styled.div`
   margin: 5% 0 0 0;
@@ -45,56 +42,72 @@ const Profile = ({ id }) => {
           habitant.id.toString().trim() === id.toString().trim()
       );
       const a = habitants[index];
-      console.log("ola");
       index >= 0 ? setHabitant(a) : setHabitant("undefined");
 
       setIsFeching(false);
     }
   }, [id, habitants]);
 
-  const readAllPropertys = prop => {
-    if (typeof prop === "string" || typeof prop === "number") return prop;
-    else if (isArray(prop)) return prop.join(", ") + ".";
-    else if (isObject(prop))
-      return Object.entries(prop).map(item => (
-        <p>
-          <b>{item[0]}:</b> {readAllPropertys(item[1])}
-        </p>
-      ));
-    return null;
-  };
-
   if (isFeching) return <div>"loading..."</div>;
   if (habitant === "undefined" || typeof habitant !== "object")
     return <div>Not Found :'(</div>;
 
+  const {
+    thumbnail,
+    name,
+    age,
+    friends,
+    professions,
+    hair_color,
+    height,
+    weight
+  } = habitant;
+
   return (
     <Content>
-      <Image
-        src={habitant.thumbnail}
-        alt={habitant.name}
-        title={habitant.name}
-      />
+      <Image src={thumbnail} alt={name} title={name} />
       <Description>
-        {Object.entries(habitant).map(prop =>
-          IGNORE_PROPS.includes(
-            prop[0]
-              .toString()
-              .trim()
-              .toLowerCase()
-          ) ? null : (
-            <p>
-              <b>{prop[0]}:</b> {readAllPropertys(prop[1])}
-            </p>
-          )
+        {name && isString(name) && (
+          <p>
+            <b>Name: </b>
+            {name}
+          </p>
         )}
-        {habitant.hasOwnProperty("friends") && isArray(habitant.friends) && (
+        {age && isNumber(age) && (
+          <p>
+            <b>Age: </b>
+            {age}
+          </p>
+        )}
+        {height && isNumber(height) && (
+          <p>
+            <b>Height: </b>
+            {height}
+          </p>
+        )}
+        {weight && isNumber(weight) && (
+          <p>
+            <b>Weight: </b>
+            {weight}
+          </p>
+        )}
+
+        {hair_color && isString(hair_color) && (
+          <p>
+            <b>Hair color: </b>
+            {hair_color}
+          </p>
+        )}
+        {professions && isArray(professions) && (
+          <p>
+            <b>Professions: </b>
+            {professions.join(", ")}.
+          </p>
+        )}
+        {friends && isArray(friends) && (
           <p>
             <b>Friends: </b>
-            {habitant.friends.map(friend => (
-              // here navigate when clicking item friend
-              <p>{friend}</p>
-            ))}
+            {friends.join(", ")}.
           </p>
         )}
       </Description>
