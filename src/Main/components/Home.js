@@ -21,15 +21,24 @@ const SKIP_PAGINATION = 6;
 
 const List = styled.div`
   display: grid;
+  justify-content: center;
   grid-template-columns: 40% 40%;
-  grid-column-gap: 20%;
+  grid-column-gap: 8%;
   -webkit-transition: heigth 12s;
   transition: heigth 12s;
 `;
 
 const PaginatorPanel = styled.div`
+  margin: 10px 5%;
+  padding: 0 5%;
+  flex: 1;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  align-items: flex-end;
+  p {
+    margin: 0 0 11px 0;
+  }
 `;
 
 const Icon = styled.img`
@@ -54,12 +63,15 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState([]);
 
+  window.f = () => console.log(filter);
+
   const toggleFilter = element => {
     const hasIndexArray = filter.indexOf(element);
     const newFilterState = filter;
 
+    // TODO don't working
     hasIndexArray > -1
-      ? newFilterState.pop(hasIndexArray)
+      ? newFilterState.slice(hasIndexArray, 1)
       : newFilterState.push(element);
 
     setFilter([...newFilterState]);
@@ -108,13 +120,10 @@ const Home = () => {
           alt={"previous"}
         />
         <p>
-          {currentPage} / {totalPages(habitantsCookedData)}
+          <b>
+            {currentPage} / {totalPages(habitantsCookedData)}
+          </b>
         </p>
-        <Icon
-          onClick={currentPage < totalPages(habitantsCookedData) && nextPage}
-          src={arrow_r}
-          alt={"next"}
-        />
       </PaginatorPanel>
     </>
   );

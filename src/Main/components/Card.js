@@ -5,6 +5,7 @@ import Image from "./Image";
 import styled from "@emotion/styled";
 
 const CardStyle = styled.div`
+  cursor: pointer;
   width: 100%;
   display: flex;
   flex-direction: column;

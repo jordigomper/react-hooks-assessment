@@ -19,15 +19,21 @@ const Main = styled.div`
   align-self: center;
 `;
 
+const RouterStyled = styled(Router)`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
 function App() {
   return (
     <Main>
       <Header>nice to meet you!</Header>
       <APIProvider>
-        <Router>
+        <RouterStyled>
           <Home exact path="/" />
           <Profile exact path="/profile/:id" />
-        </Router>
+        </RouterStyled>
       </APIProvider>
     </Main>
   );

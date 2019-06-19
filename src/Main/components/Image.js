@@ -4,11 +4,11 @@ import styled from "@emotion/styled";
 
 const Img = styled.img`
   object-fit: cover;
-  height: 100px;
+  height: 130px;
 `;
 
 const EmptyBackground = styled.img`
-  height: 100px;
+  height: 130px;
   background-color: gray;
 `;
 
