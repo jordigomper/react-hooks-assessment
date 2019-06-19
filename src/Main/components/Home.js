@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { APIContext } from "../context";
-import FilterPanel from "./FilterPanel";
+import Searchbar from "./Searchbar";
 import Card from "./Card";
 import styled from "@emotion/styled";
 import { hasSome } from "../../module/utils";
@@ -8,7 +8,7 @@ import { usePaginator } from "../../module/hooks";
 
 const SKIP_PAGINATION = 6;
 
-const Grid = styled.div`
+const List = styled.div`
   display: grid;
   grid-template-columns: 40% 40%;
   grid-column-gap: 20%;
@@ -37,8 +37,11 @@ const Home = () => {
   useEffect(() => {
     const cookedData =
       searchTerm.length > 0
-        ? habitants.filter(({ professions }) =>
-            hasSome(professions, searchTerm)
+        ? habitants.filter(({ name }) =>
+            name
+              .trim()
+              .toLowerCase()
+              .includes(searchTerm.trim().toLowerCase())
           )
         : habitants;
     setPage(SKIP_PAGINATION);
@@ -49,15 +52,15 @@ const Home = () => {
 
   return (
     <>
-      <FilterPanel searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <Searchbar value={searchTerm} onChange={setSearchTerm} />
 
-      <Grid>
+      <List>
         {habitantsDataCooked
           .slice(page, page + SKIP_PAGINATION)
           .map(habitant => (
             <Card key={habitant.id} {...habitant} />
           ))}
-      </Grid>
+      </List>
 
       <PaginatorPanel>
         <button onClick={prevPage} disabled={currentPage === 1}>
