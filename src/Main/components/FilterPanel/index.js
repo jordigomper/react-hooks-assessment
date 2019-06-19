@@ -15,7 +15,12 @@ const Panel = styled.div`
 const FilterPanel = ({ buttons, ...rest }) => (
   <Panel>
     {buttons.map(
-      item => typeof item === "string" && <Button {...rest}>{item}</Button>
+      item =>
+        typeof item === "string" && (
+          <Button key={item} {...rest}>
+            {item}
+          </Button>
+        )
     )}
   </Panel>
 );
