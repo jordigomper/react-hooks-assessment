@@ -1,12 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
+import { hasSome } from "../../module/utils";
+import { usePaginator } from "../../module/hooks";
 import { APIContext } from "../context";
 import Searchbar from "./Searchbar";
 import Card from "./Card";
-import styled from "@emotion/styled";
-import { hasSome } from "../../module/utils";
-import { usePaginator } from "../../module/hooks";
 import FilterPanel from "./FilterPanel";
-import { arrayExpression } from "@babel/types";
+import styled from "@emotion/styled";
+
+const arrow_r = require("../../assets/icons/chevron_right.svg");
+const arrow_l = require("../../assets/icons/chevron_left.svg");
 
 // @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 //   /* Styles */
@@ -30,6 +32,12 @@ const PaginatorPanel = styled.div`
   justify-content: space-between;
 `;
 
+const Icon = styled.img`
+  width: 40px;
+  background: gray;
+  border-radius: 100%;
+`;
+
 const Home = () => {
   const {
     page,
@@ -41,7 +49,7 @@ const Home = () => {
   } = usePaginator();
 
   const { habitants, professions } = useContext(APIContext);
-  const [habitantsDataCooked, setHabitantsDataCooked] = useState(habitants);
+  const [habitantsCookedData, setHabitantsCookedData] = useState(habitants);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState([]);
@@ -74,7 +82,7 @@ const Home = () => {
       );
     }
     setPage(0);
-    setHabitantsDataCooked(cookedData);
+    setHabitantsCookedData(cookedData);
   }, [habitants, searchTerm, filter]);
 
   window.pa = page => setPage(page * SKIP_PAGINATION);
@@ -86,7 +94,7 @@ const Home = () => {
       <FilterPanel buttons={professions} onClick={toggleFilter} />
 
       <List>
-        {habitantsDataCooked
+        {habitantsCookedData
           .slice(page, page + SKIP_PAGINATION)
           .map(habitant => (
             <Card key={habitant.id} {...habitant} />
@@ -94,16 +102,19 @@ const Home = () => {
       </List>
 
       <PaginatorPanel>
-        <button onClick={prevPage} disabled={currentPage === 1}>
-          previous
-        </button>
-        {currentPage} / {totalPages(habitantsDataCooked)}
-        <button
-          onClick={nextPage}
-          disabled={currentPage >= totalPages(habitantsDataCooked)}
-        >
-          next
-        </button>
+        <Icon
+          onClick={currentPage !== 1 && prevPage}
+          src={arrow_l}
+          alt={"previous"}
+        />
+        <p>
+          {currentPage} / {totalPages(habitantsCookedData)}
+        </p>
+        <Icon
+          onClick={currentPage < totalPages(habitantsCookedData) && nextPage}
+          src={arrow_r}
+          alt={"next"}
+        />
       </PaginatorPanel>
     </>
   );
