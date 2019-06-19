@@ -3,7 +3,7 @@ import { isArray } from "util";
 
 const SKIP_PAGINATION = 6;
 export const usePaginator = () => {
-  const [page, setPage] = useState(SKIP_PAGINATION);
+  const [page, setPage] = useState(0);
   const nextPage = () => setPage(page + SKIP_PAGINATION);
   const prevPage = () => setPage(page - SKIP_PAGINATION);
   const currentPage = page / SKIP_PAGINATION;
