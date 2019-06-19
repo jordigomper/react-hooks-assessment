@@ -8,17 +8,28 @@ const STATE_INITIAL_VALUE = {
 
 const APIContext = createContext([]);
 
-const APIProvider = ({ children }) => {
-  function reducer(state, action) {
-    // const currentState = JSON.parse(JSON.stringify(state));
-    switch (action.type) {
-      case "fetch":
-        return { habitants: action.data };
-      default:
-        return state;
-    }
-  }
+const extractProfessions = habitants => {
+  const professions = habitants.reduce((acc, { professions }) => {
+    professions.map(profession => {
+      profession && profession !== "undefined" && acc.add(profession);
+    });
+    return acc;
+  }, new Set());
 
+  return Array.from(professions);
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "fetch":
+      const professions = extractProfessions(action.data);
+      return { habitants: action.data, professions };
+    default:
+      return state;
+  }
+}
+
+const APIProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, STATE_INITIAL_VALUE);
 
   async function fetchData() {

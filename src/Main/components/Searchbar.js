@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const Container = styled.div`
-  width: 100%;
+  /* width: 100%; */
   margin: 5%;
   display: flex;
   flex-wrap: wrap;

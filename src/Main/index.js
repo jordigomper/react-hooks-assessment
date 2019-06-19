@@ -1,7 +1,9 @@
 import React from "react";
-import styled from "@emotion/styled";
+import { Router } from "@reach/router";
 import { APIProvider } from "./context";
 import Home from "./components/Home";
+import Profile from "./components/Profile";
+import styled from "@emotion/styled";
 
 const Header = styled.h1`
   width: 100%;
@@ -22,7 +24,10 @@ function App() {
     <Main>
       <APIProvider>
         <Header>nice to meet you!</Header>
-        <Home />
+        <Router>
+          <Home exact path="/" />
+          <Profile exact path="/profile/:id" />
+        </Router>
       </APIProvider>
     </Main>
   );

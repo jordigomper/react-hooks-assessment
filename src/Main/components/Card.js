@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { navigate } from "@reach/router";
 import Image from "./Image";
 import styled from "@emotion/styled";
 
@@ -17,7 +18,7 @@ const CardStyle = styled.div`
 
 const Card = ({ id, thumbnail, name, age, friends, professions }) => {
   return (
-    <CardStyle>
+    <CardStyle onClick={() => navigate(`/profile/${id}`)}>
       <Image src={thumbnail} alt={name} title={name} />
       <p>{name}</p>
     </CardStyle>
