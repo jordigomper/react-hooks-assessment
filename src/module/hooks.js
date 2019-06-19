@@ -9,7 +9,7 @@ export const usePaginator = () => {
   const currentPage = page / SKIP_PAGINATION + 1;
   const totalPages = list => {
     const total = (isArray(list) ? list.length : list) / SKIP_PAGINATION;
-    return total > 0 ? Math.floor(total) : 1;
+    return Math.round(total) ? Math.round(total) : 1;
   };
   return { page, setPage, nextPage, prevPage, currentPage, totalPages };
 };
