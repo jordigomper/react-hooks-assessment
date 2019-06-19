@@ -7,6 +7,11 @@ const Img = styled.img`
   height: 100px;
 `;
 
+const EmptyBackground = styled.img`
+  height: 100px;
+  background-color: gray;
+`;
+
 const ImageCache = ({ src, alt, title }) => {
   const [image, setImage] = useState();
 
@@ -18,7 +23,11 @@ const ImageCache = ({ src, alt, title }) => {
     img.src = src;
   }, []);
 
-  return <Img src={image} alt={alt} title={title} />;
+  return !image ? (
+    <EmptyBackground />
+  ) : (
+    <Img src={image} alt={alt} title={title} />
+  );
 };
 
 Image.propTypes = {
