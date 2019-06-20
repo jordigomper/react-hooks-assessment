@@ -1,8 +1,10 @@
 import React from "react";
 import { Router } from "@reach/router";
 import { APIProvider } from "./context";
+import { ThemeProvider } from "emotion-theming";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
+import { theme } from "./theme.js";
 import styled from "@emotion/styled";
 
 const Header = styled.h1`
@@ -28,13 +30,15 @@ const RouterStyled = styled(Router)`
 function App() {
   return (
     <Main>
-      <Header>nice to meet you!</Header>
-      <APIProvider>
-        <RouterStyled>
-          <Home exact path="/" />
-          <Profile exact path="/profile/:id" />
-        </RouterStyled>
-      </APIProvider>
+      <ThemeProvider theme={theme}>
+        <Header>nice to meet you!</Header>
+        <APIProvider>
+          <RouterStyled>
+            <Home exact path="/" />
+            <Profile exact path="/profile/:id" />
+          </RouterStyled>
+        </APIProvider>
+      </ThemeProvider>
     </Main>
   );
 }
