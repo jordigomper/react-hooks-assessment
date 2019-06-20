@@ -11,13 +11,6 @@ import { isString, isNumber } from "util";
 const arrow_r = require("../../assets/icons/chevron_right.svg");
 const arrow_l = require("../../assets/icons/chevron_left.svg");
 
-// @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-//   /* Styles */
-//   }
-// @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
-//   /* Styles */
-//   }
-
 const SKIP_PAGINATION = 6;
 
 const List = styled.div`
@@ -107,8 +100,6 @@ const Home = () => {
     setPage(0);
     setHabitantsCookedData(cookedData);
   }, [habitants, searchTerm, filter]);
-
-  window.pa = page => setPage(page * SKIP_PAGINATION);
 
   return (
     <>

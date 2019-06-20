@@ -127,9 +127,7 @@ const Profile = ({ id }) => {
           </p>
         )}
       </Description>
-      <ButtonBack onClick={() => navigate("/")} alt={"previous"}>
-        BACK
-      </ButtonBack>
+      <ButtonBack onClick={() => navigate("/")}>BACK</ButtonBack>
     </Content>
   );
 };
