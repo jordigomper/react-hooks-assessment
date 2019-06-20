@@ -27,6 +27,13 @@ const List = styled.div`
   grid-column-gap: 8%;
   -webkit-transition: heigth 12s;
   transition: heigth 12s;
+
+  ${({ theme: { breakPoints } }) => `
+    @media (min-width: ${breakPoints.tablet}px) {
+      margin: 30px 0 60px 0;
+      grid-template-columns: 20% 20% 20%;
+    }
+  `}
 `;
 
 const PaginatorPanel = styled.div`

@@ -10,8 +10,16 @@ import styled from "@emotion/styled";
 const Header = styled.h1`
   width: 100%;
   margin: 0;
+  padding: 20px;
   background-color: blue;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${({ theme: { breakPoints } }) => `
+    @media (min-width: ${breakPoints.tablet}px) {
+      font-size: 80px;
+    }
+  `}
 `;
 
 const Main = styled.div`
@@ -25,6 +33,11 @@ const RouterStyled = styled(Router)`
   flex: 1;
   display: flex;
   flex-direction: column;
+  ${({ theme: { breakPoints } }) => `
+    @media (min-width: ${breakPoints.tablet}px) {
+      padding: 0 15%;
+    }
+  `}
 `;
 
 function App() {

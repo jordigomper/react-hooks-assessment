@@ -6,6 +6,20 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-self: center;
+
+  label {
+    margin-right: 15px;
+  }
+
+  ${({ theme: { breakPoints } }) => `
+    @media (min-width: ${breakPoints.tablet}px) {
+      font-size: 20px;
+      input {
+        font-size: 15px;
+      }
+    }
+  `}
 `;
 
 const Searchbar = ({ value, onChange }) => {
@@ -13,12 +27,12 @@ const Searchbar = ({ value, onChange }) => {
     <Container>
       <label>
         <b>Search by name: </b>
-        <input
-          value={value}
-          onChange={({ target: { value } }) => onChange(value)}
-          placeholder="Search Gnom"
-        />
       </label>
+      <input
+        value={value}
+        onChange={({ target: { value } }) => onChange(value)}
+        placeholder="Search Gnom"
+      />
     </Container>
   );
 };

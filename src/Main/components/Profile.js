@@ -27,10 +27,16 @@ const Description = styled.div`
 `;
 
 const ButtonBack = styled.div`
+  cursor: pointer;
   position: fixed;
   bottom: 40px;
   left: 22px;
   font-weight: bold;
+  ${({ theme: { breakPoints } }) => `
+    @media (min-width: ${breakPoints.tablet}px) {
+      left: 150px;
+    }
+  `}
 `;
 
 const Profile = ({ id }) => {
