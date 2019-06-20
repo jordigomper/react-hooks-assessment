@@ -18,6 +18,8 @@ const CardStyle = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0;
+    padding: 0 6%;
   }
 `;
 

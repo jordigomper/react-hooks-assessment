@@ -7,9 +7,6 @@ const Panel = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  button {
-    margin: 0 5px 5px 0;
-  }
 `;
 
 const FilterPanel = ({ buttons, ...rest }) => (
