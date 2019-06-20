@@ -42,9 +42,9 @@ Image.propTypes = {
 };
 
 Image.defaultProps = {
-  src: null,
-  alt: null,
-  title: null
+  src: "",
+  alt: "Not Found",
+  title: "Image not found"
 };
 
 export default ImageCache;
