@@ -4,6 +4,8 @@ import { navigate } from "@reach/router";
 import Image from "./Image";
 import styled from "@emotion/styled";
 
+const phantom_gnom = require("../../assets/img/top_secret.jpg");
+
 const CardStyle = styled.div`
   cursor: pointer;
   width: 100%;
@@ -19,7 +21,7 @@ const CardStyle = styled.div`
   }
 `;
 
-const Card = ({ id, thumbnail, name, age, friends, professions }) => {
+const Card = ({ id, thumbnail, name }) => {
   return (
     <CardStyle onClick={() => navigate(`/profile/${id}`)}>
       <Image src={thumbnail} alt={name} title={name} />
@@ -29,12 +31,14 @@ const Card = ({ id, thumbnail, name, age, friends, professions }) => {
 };
 
 Card.propTypes = {
-  age: PropTypes.number.isRequired,
-  friends: PropTypes.arrayOf(PropTypes.string).isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  professions: PropTypes.arrayOf(PropTypes.string).isRequired,
   thumbnail: PropTypes.string.isRequired
+};
+
+Card.defaultProps = {
+  name: "",
+  thumbnail: phantom_gnom
 };
 
 export default Card;
