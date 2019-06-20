@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
+const phantom_gnom = require("../../assets/img/top_secret.jpg");
+
 const Img = styled.img`
   object-fit: cover;
   height: 130px;
@@ -19,6 +21,9 @@ const ImageCache = ({ src, alt, title }) => {
     const img = new Image();
     img.onload = function() {
       setImage(img.src);
+    };
+    img.onerror = function() {
+      setImage(phantom_gnom);
     };
     img.src = src;
   }, []);
