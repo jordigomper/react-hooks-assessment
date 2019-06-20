@@ -6,6 +6,7 @@ import Searchbar from "./Searchbar";
 import Card from "./Card";
 import FilterPanel from "./FilterPanel";
 import styled from "@emotion/styled";
+import { isString, isNumber } from "util";
 
 const arrow_r = require("../../assets/icons/chevron_right.svg");
 const arrow_l = require("../../assets/icons/chevron_left.svg");
@@ -76,6 +77,11 @@ const Home = () => {
 
   useEffect(() => {
     let cookedData = habitants;
+
+    cookedData = cookedData.filter(
+      hab => hab.hasOwnProperty("id") && (isNumber(hab.id) || isString(hab.id))
+    );
+
     if (searchTerm.length > 0) {
       cookedData = cookedData.filter(({ name }) =>
         name
@@ -90,15 +96,12 @@ const Home = () => {
         hasSome(filter, professions)
       );
     }
+
     setPage(0);
     setHabitantsCookedData(cookedData);
   }, [habitants, searchTerm, filter]);
 
   window.pa = page => setPage(page * SKIP_PAGINATION);
-
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
 
   return (
     <>
