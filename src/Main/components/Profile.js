@@ -35,7 +35,7 @@ const ButtonBack = styled.div`
 
 const Profile = ({ id }) => {
   const { habitants } = useContext(APIContext);
-  const [habitant, setHabitant] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [isFeching, setIsFeching] = useState(true);
 
   useEffect(() => {
@@ -49,14 +49,14 @@ const Profile = ({ id }) => {
             typeof habitant.id === "number") &&
           habitant.id.toString().trim() === id.toString().trim()
       );
-      index >= 0 ? setHabitant(habitants[index]) : setHabitant("undefined");
+      index >= 0 ? setProfile(habitants[index]) : setProfile("undefined");
 
       setIsFeching(false);
     }
   }, [id, habitants]);
 
   if (isFeching) return <div>"loading..."</div>;
-  if (habitant === "undefined" || typeof habitant !== "object")
+  if (profile === "undefined" || typeof profile !== "object")
     return <div>Not Found :'(</div>;
 
   const {
@@ -68,7 +68,7 @@ const Profile = ({ id }) => {
     hair_color,
     height,
     weight
-  } = habitant;
+  } = profile;
 
   return (
     <Content>
@@ -77,44 +77,47 @@ const Profile = ({ id }) => {
         {name && isString(name) && (
           <p>
             <b>Name: </b>
-            {name}
+            {name ? name : "Not found..."}
           </p>
         )}
         {age && isNumber(age) && (
           <p>
             <b>Age: </b>
-            {age}
+            {age ? age : "Not Found..."}
           </p>
         )}
         {height && isNumber(height) && (
           <p>
             <b>Height: </b>
-            {height}
+            {height ? height : "Not Found..."}
           </p>
         )}
         {weight && isNumber(weight) && (
           <p>
             <b>Weight: </b>
-            {weight}
+            {weight ? weight : "Not Found..."}
           </p>
         )}
 
         {hair_color && isString(hair_color) && (
           <p>
             <b>Hair color: </b>
-            {hair_color}
+            {hair_color ? hair_color : "Not Found..."}
           </p>
         )}
         {professions && isArray(professions) && (
           <p>
             <b>Professions: </b>
-            {professions.join(", ")}.
+            {professions.length > 0 ? professions.join(", ") : "Unemployed"}.
           </p>
         )}
         {friends && isArray(friends) && (
           <p>
             <b>Friends: </b>
-            {friends.join(", ")}.
+            {friends.length > 0
+              ? friends.join(", ")
+              : "He/She not have, He/She is a lone ranger"}
+            .
           </p>
         )}
       </Description>
