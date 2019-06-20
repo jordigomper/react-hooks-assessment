@@ -63,15 +63,12 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState([]);
 
-  window.f = () => console.log(filter);
-
   const toggleFilter = element => {
     const hasIndexArray = filter.indexOf(element);
     const newFilterState = filter;
 
-    // TODO don't working
     hasIndexArray > -1
-      ? newFilterState.slice(hasIndexArray, 1)
+      ? newFilterState.splice(hasIndexArray, 1)
       : newFilterState.push(element);
 
     setFilter([...newFilterState]);
@@ -99,6 +96,10 @@ const Home = () => {
 
   window.pa = page => setPage(page * SKIP_PAGINATION);
 
+  useEffect(() => {
+    console.log(filter);
+  }, [filter]);
+
   return (
     <>
       <Searchbar value={searchTerm} onChange={setSearchTerm} />
@@ -124,6 +125,11 @@ const Home = () => {
             {currentPage} / {totalPages(habitantsCookedData)}
           </b>
         </p>
+        <Icon
+          onClick={currentPage < totalPages(habitantsCookedData) && nextPage}
+          src={arrow_r}
+          alt={"next"}
+        />
       </PaginatorPanel>
     </>
   );
