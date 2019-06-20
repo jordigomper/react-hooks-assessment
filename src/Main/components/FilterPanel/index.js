@@ -4,6 +4,7 @@ import Button from "./Button";
 import styled from "@emotion/styled";
 
 const Panel = styled.div`
+  margin: 15px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
