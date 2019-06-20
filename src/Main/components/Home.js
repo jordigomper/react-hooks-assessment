@@ -119,7 +119,7 @@ const Home = () => {
 
       <PaginatorPanel>
         <Icon
-          onClick={currentPage !== 1 && prevPage}
+          onClick={() => prevPage(currentPage === 1)}
           src={arrow_l}
           alt={"previous"}
         />
@@ -129,7 +129,9 @@ const Home = () => {
           </b>
         </p>
         <Icon
-          onClick={currentPage < totalPages(habitantsCookedData) && nextPage}
+          onClick={() =>
+            nextPage(currentPage >= totalPages(habitantsCookedData))
+          }
           src={arrow_r}
           alt={"next"}
         />
