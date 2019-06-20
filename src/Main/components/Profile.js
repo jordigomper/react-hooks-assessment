@@ -4,6 +4,7 @@ import { APIContext } from "../context";
 import { isArray, isString, isNumber } from "util";
 import Image from "./Image";
 import styled from "@emotion/styled";
+import { navigate } from "@reach/router";
 
 const Content = styled.div`
   margin: 5% 0 0 0;
@@ -23,6 +24,13 @@ const Description = styled.div`
     margin: 2% 5%;
     display: inline;
   }
+`;
+
+const ButtonBack = styled.div`
+  position: fixed;
+  bottom: 40px;
+  left: 22px;
+  font-weight: bold;
 `;
 
 const Profile = ({ id }) => {
@@ -110,6 +118,9 @@ const Profile = ({ id }) => {
           </p>
         )}
       </Description>
+      <ButtonBack onClick={() => navigate("/")} alt={"previous"}>
+        BACK
+      </ButtonBack>
     </Content>
   );
 };

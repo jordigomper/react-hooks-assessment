@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 const ButtonStyle = styled.div`
   cursor: pointer;
   margin: 0 5px 5px 0;
-  background-color: ${({ isActive }) => (isActive ? "red" : "transparent")};
+  ${({ isActive }) => isActive && `font-weight: bold;`};
 `;
 
 const Button = ({ children, onClick }) => {
