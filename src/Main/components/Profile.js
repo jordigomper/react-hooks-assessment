@@ -77,7 +77,6 @@ const Profile = ({ id }) => {
     weight
   } = profile;
 
-  debugger;
   return (
     <Content>
       <Image src={thumbnail} alt={name} title={name} />
