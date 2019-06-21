@@ -32,8 +32,6 @@ const Main = styled.div`
 `;
 
 const RouterStyled = styled(Router)`
-  border: 1px solid #dddfe2;
-  border-radius: 3px;
   background-color: white;
   flex: 1;
   display: flex;
@@ -42,6 +40,8 @@ const RouterStyled = styled(Router)`
     @media (min-width: ${breakPoints.tablet}px) {
       margin: 0 15%;
       padding: 0 15px;
+      border: 1px solid #dddfe2;
+      border-radius: 3px;
     }
   `}
 `;
