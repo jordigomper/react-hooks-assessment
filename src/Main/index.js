@@ -11,7 +11,8 @@ const Header = styled.h1`
   width: 100%;
   margin: 0;
   padding: 20px;
-  background-color: blue;
+  background-color: #4267b2;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,18 +25,23 @@ const Header = styled.h1`
 
 const Main = styled.div`
   min-height: 100vh;
+  background-color: #e9ebee;
   display: flex;
   flex-direction: column;
   align-self: center;
 `;
 
 const RouterStyled = styled(Router)`
+  border: 1px solid #dddfe2;
+  border-radius: 3px;
+  background-color: white;
   flex: 1;
   display: flex;
   flex-direction: column;
   ${({ theme: { breakPoints } }) => `
     @media (min-width: ${breakPoints.tablet}px) {
-      padding: 0 15%;
+      margin: 0 15%;
+      padding: 0 15px;
     }
   `}
 `;

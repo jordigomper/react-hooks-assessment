@@ -28,9 +28,10 @@ const Description = styled.div`
 
 const ButtonBack = styled.div`
   cursor: pointer;
-  position: fixed;
-  bottom: 40px;
-  left: 22px;
+  margin: 15px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  background-color: red;
   font-weight: bold;
   ${({ theme: { breakPoints } }) => `
     @media (min-width: ${breakPoints.tablet}px) {
