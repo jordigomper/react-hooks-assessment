@@ -5,10 +5,6 @@ import * as AppContext from "../seed";
 
 describe("Searchbar component", () => {
   it("renders correctly", () => {
-    const contextValues = [];
-    jest
-      .spyOn(AppContext, "useAppContext")
-      .mockImplementation(() => contextValues);
     const wrapper = shallow(<Searchbar />);
     expect(wrapper).toMatchSnapshot();
   });
