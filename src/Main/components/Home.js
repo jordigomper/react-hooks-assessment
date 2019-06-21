@@ -66,8 +66,9 @@ const Home = () => {
 
   const toggleFilter = element => {
     const hasIndexArray = filter.indexOf(element);
-    const newFilterState = filter;
+    const newFilterState = JSON.parse(JSON.stringify(filter));
 
+    // add or remove the selector pushed
     hasIndexArray > -1
       ? newFilterState.splice(hasIndexArray, 1)
       : newFilterState.push(element);
@@ -76,12 +77,20 @@ const Home = () => {
   };
 
   useEffect(() => {
+    const cookedData = filterData;
+    setPage(0);
+    setHabitantsCookedData(cookedData);
+  }, [habitants, searchTerm, filter]);
+
+  function filterData() {
     let cookedData = habitants;
 
+    // check id format
     cookedData = cookedData.filter(
       hab => hab.hasOwnProperty("id") && (isNumber(hab.id) || isString(hab.id))
     );
 
+    // filter searchbar
     if (searchTerm.length > 0) {
       cookedData = cookedData.filter(({ name }) =>
         name
@@ -91,15 +100,14 @@ const Home = () => {
       );
     }
 
+    // filter selectors
     if (filter.length > 0) {
       cookedData = cookedData.filter(({ professions }) =>
         hasSome(filter, professions)
       );
     }
-
-    setPage(0);
-    setHabitantsCookedData(cookedData);
-  }, [habitants, searchTerm, filter]);
+    return cookedData;
+  }
 
   return (
     <>

@@ -9,6 +9,7 @@ const STATE_INITIAL_VALUE = {
 const APIContext = createContext([]);
 
 const extractProfessions = habitants => {
+  // create new Set professions
   const professions = habitants.reduce((acc, { professions }) => {
     professions.map(profession => {
       profession && profession !== "undefined" && acc.add(profession);
@@ -42,7 +43,6 @@ const APIProvider = ({ children }) => {
       .catch(error => console.error(error.message));
 
     if (response && isArray(response)) {
-      console.log(response);
       dispatch({ type: "fetch", data: response });
       localStorage.setItem("habitantsLocal", JSON.stringify(response));
     }
