@@ -16,8 +16,28 @@ You can visit: http://gnomebook.surge.sh
 
 - npm test.
 
-#To Do
+# To Do
 
 - Add work icons in the Card.
 - In the profile, it will can navigate for others friends profiles.
 - improve the tests.
+
+# Tech Stack
+
+- React 16.8.6
+
+### from css:
+
+- Emotion
+  - emotion/core
+  - emotion/styled
+  - emotion-theming
+
+### router:
+
+- Reach router
+
+### test
+
+- Jest
+- Enzyme
