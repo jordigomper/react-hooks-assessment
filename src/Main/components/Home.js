@@ -45,6 +45,12 @@ const Icon = styled.img`
   width: 40px;
   background: #4267b273;
   border-radius: 100%;
+  ${({ disabled }) =>
+    disabled &&
+    `
+    cursor: initial;
+    opacity: 0;
+  `};
 `;
 
 const Home = () => {
@@ -64,11 +70,11 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState([]);
 
+  // add or remove the selector pushed
   const toggleFilter = element => {
     const hasIndexArray = filter.indexOf(element);
     const newFilterState = JSON.parse(JSON.stringify(filter));
 
-    // add or remove the selector pushed
     hasIndexArray > -1
       ? newFilterState.splice(hasIndexArray, 1)
       : newFilterState.push(element);
@@ -123,6 +129,7 @@ const Home = () => {
 
       <PaginatorPanel>
         <Icon
+          disabled={currentPage === 1}
           onClick={() => prevPage(currentPage === 1)}
           src={arrow_l}
           alt={"previous"}
@@ -133,6 +140,7 @@ const Home = () => {
           </b>
         </p>
         <Icon
+          disabler={currentPage >= totalPages(habitantsCookedData)}
           onClick={() =>
             nextPage(currentPage >= totalPages(habitantsCookedData))
           }
