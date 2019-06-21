@@ -77,56 +77,56 @@ const Profile = ({ id }) => {
     weight
   } = profile;
 
+  debugger;
   return (
     <Content>
       <Image src={thumbnail} alt={name} title={name} />
       <Description>
-        {name && isString(name) && (
-          <p>
-            <b>Name: </b>
-            {name ? name : "Not found..."}
-          </p>
-        )}
-        {age && isNumber(age) && (
-          <p>
-            <b>Age: </b>
-            {age ? age : "Not Found..."}
-          </p>
-        )}
-        {height && isNumber(height) && (
-          <p>
-            <b>Height: </b>
-            {height ? height : "Not Found..."}
-          </p>
-        )}
-        {weight && isNumber(weight) && (
-          <p>
-            <b>Weight: </b>
-            {weight ? weight : "Not Found..."}
-          </p>
-        )}
+        <p>
+          <b>Name: </b>
+          {name && isString(name) ? name : "Not found..."}
+        </p>
+        <p>
+          <b>Age: </b>
+          {age && (isNumber(age) || isString(age)) && Number.parseInt(age)
+            ? age
+            : "Not Found..."}
+        </p>
+        <p>
+          <b>Height: </b>
+          {height &&
+          (isNumber(height) || isString(height)) &&
+          Number.parseInt(height)
+            ? height
+            : "Not Found..."}
+        </p>
+        <p>
+          <b>Weight: </b>
+          {weight &&
+          (isNumber(weight) || isString(weight)) &&
+          Number.parseInt(weight)
+            ? weight
+            : "Not Found..."}
+        </p>
 
-        {hair_color && isString(hair_color) && (
-          <p>
-            <b>Hair color: </b>
-            {hair_color ? hair_color : "Not Found..."}
-          </p>
-        )}
-        {professions && isArray(professions) && (
-          <p>
-            <b>Professions: </b>
-            {professions.length > 0 ? professions.join(", ") : "Unemployed"}.
-          </p>
-        )}
-        {friends && isArray(friends) && (
-          <p>
-            <b>Friends: </b>
-            {friends.length > 0
-              ? friends.join(", ")
-              : "He/She not have, He/She is a lone ranger"}
-            .
-          </p>
-        )}
+        <p>
+          <b>Hair color: </b>
+          {hair_color && isString(hair_color) ? hair_color : "Not Found..."}
+        </p>
+        <p>
+          <b>Professions: </b>
+          {isArray(professions) && professions.length > 0
+            ? professions.join(", ")
+            : "Unemployed"}
+          .
+        </p>
+        <p>
+          <b>Friends: </b>
+          {isArray(friends) && friends.length > 0
+            ? friends.join(", ")
+            : "He/She not have, He/She is a lone ranger"}
+          .
+        </p>
       </Description>
       <ButtonBack onClick={() => navigate("/")}>BACK</ButtonBack>
     </Content>
