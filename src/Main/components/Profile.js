@@ -6,6 +6,8 @@ import Image from "./Image";
 import styled from "@emotion/styled";
 import { navigate } from "@reach/router";
 
+const determineSexe = /(?:^|(?:\.))(\w+).([aeiou]\s)/i;
+
 const Content = styled.div`
   margin: 5% 0 0 0;
   display: flex;
@@ -92,6 +94,14 @@ const Profile = ({ id }) => {
             : "Not Found..."}
         </p>
         <p>
+          <b>Sexe: </b>
+          {name && isString(name)
+            ? determineSexe.test(name)
+              ? "Female"
+              : "Male"
+            : "Undefined."}
+        </p>
+        <p>
           <b>Height: </b>
           {height &&
           (isNumber(height) || isString(height)) &&
@@ -107,7 +117,6 @@ const Profile = ({ id }) => {
             ? weight
             : "Not Found..."}
         </p>
-
         <p>
           <b>Hair color: </b>
           {hair_color && isString(hair_color) ? hair_color : "Not Found..."}
