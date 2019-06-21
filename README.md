@@ -14,10 +14,10 @@ You can visit: http://gnomebook.surge.sh
 
 # Test
 
-\*. npm test.
+- npm test.
 
 #To Do
 
-_. Add work icons in the Card.
-_. In the profile, it will can navigate for others friends profiles.
-\*. improve the tests.
+- Add work icons in the Card.
+- In the profile, it will can navigate for others friends profiles.
+- improve the tests.
