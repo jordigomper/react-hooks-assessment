@@ -22,12 +22,14 @@ const ImageCache = ({ src, alt, title }) => {
     img.onload = function() {
       setImage(img.src);
     };
+    // if src prop isn't exist, add phantom image
     img.onerror = function() {
       setImage(phantom_gnom);
     };
     img.src = src;
   }, []);
 
+  // while the image is loading, to show custom background
   return !image ? (
     <EmptyBackground />
   ) : (
