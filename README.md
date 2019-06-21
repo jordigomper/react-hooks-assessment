@@ -2,7 +2,7 @@
 
 Near for mountains are do a little town where they are living a smalls habitants. They are gnoms, antisocial gnoms! But... They are great workers!
 
-With this App you can meet the customs and jobs theirs.
+With this App you can meet the customs and jobs of the gnoms.
 
 You can visit: http://gnomebook.surge.sh
 
