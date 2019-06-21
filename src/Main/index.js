@@ -8,7 +8,6 @@ import { theme } from "./theme.js";
 import styled from "@emotion/styled";
 
 const Header = styled.h1`
-  width: 100%;
   margin: 0;
   padding: 20px;
   background-color: #4267b2;
