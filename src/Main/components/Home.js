@@ -11,8 +11,6 @@ import { isString, isNumber } from "util";
 const arrow_r = require("../../assets/icons/chevron_right.svg");
 const arrow_l = require("../../assets/icons/chevron_left.svg");
 
-const SKIP_PAGINATION = 6;
-
 const List = styled.div`
   display: grid;
   justify-content: center;
@@ -56,7 +54,8 @@ const Home = () => {
     nextPage,
     prevPage,
     currentPage,
-    totalPages
+    totalPages,
+    itemsForPage
   } = usePaginator();
 
   const { habitants, professions } = useContext(APIContext);
@@ -117,11 +116,9 @@ const Home = () => {
       <FilterPanel buttons={professions} onClick={toggleFilter} />
 
       <List>
-        {habitantsCookedData
-          .slice(page, page + SKIP_PAGINATION)
-          .map(habitant => (
-            <Card key={habitant.id} {...habitant} />
-          ))}
+        {habitantsCookedData.slice(page, page + itemsForPage).map(habitant => (
+          <Card key={habitant.id} {...habitant} />
+        ))}
       </List>
 
       <PaginatorPanel>
