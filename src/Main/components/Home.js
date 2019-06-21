@@ -43,6 +43,7 @@ const PaginatorPanel = styled.div`
 `;
 
 const Icon = styled.img`
+  cursor: pointer;
   width: 40px;
   background: #4267b273;
   border-radius: 100%;
