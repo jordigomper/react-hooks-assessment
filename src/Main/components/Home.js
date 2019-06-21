@@ -59,7 +59,7 @@ const Home = () => {
   } = usePaginator();
 
   const { habitants, professions } = useContext(APIContext);
-  const [habitantsCookedData, setHabitantsCookedData] = useState(habitants);
+  const [habitantsCookedData, setHabitantsCookedData] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState([]);

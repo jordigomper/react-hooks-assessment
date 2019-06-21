@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component starts with a count of 0 1`] = `ShallowWrapper {}`;
+
+exports[`Image component renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Image component starts with a count of 0 1`] = `ShallowWrapper {}`;
