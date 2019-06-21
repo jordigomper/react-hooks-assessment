@@ -4,7 +4,7 @@ import { APIProvider } from "./context";
 import { ThemeProvider } from "emotion-theming";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import { theme } from "./theme.js";
+import { theme } from "../theme.js";
 import styled from "@emotion/styled";
 
 const Header = styled.h1`
