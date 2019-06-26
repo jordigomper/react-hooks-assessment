@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { APIContext } from "../context";
+import { useAPIContext } from "../context";
 import { isArray, isString, isNumber } from "util";
 import Image from "./Image";
 import styled from "@emotion/styled";
@@ -35,15 +35,13 @@ const ButtonBack = styled.div`
   border-radius: 25px;
   background-color: red;
   font-weight: bold;
-  ${({ theme: { breakPoints } }) => `
-    @media (min-width: ${breakPoints.tablet}px) {
-      left: 150px;
-    }
-  `}
+  @media (min-width: 950px) {
+    left: 150px;
+  }
 `;
 
 const Profile = ({ id }) => {
-  const { habitants } = useContext(APIContext);
+  const { habitants } = useAPIContext();
   const [profile, setProfile] = useState(null);
   const [isFeching, setIsFeching] = useState(true);
 

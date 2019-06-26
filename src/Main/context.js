@@ -1,12 +1,13 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect, useContext } from "react";
 import { isArray } from "util";
 
-const STATE_INITIAL_VALUE = {
+const defaultValues = {
   habitants: [],
   professions: []
 };
 
-const APIContext = createContext([]);
+const APIContext = createContext(defaultValues);
+const useAPIContext = () => useContext(APIContext);
 
 const extractProfessions = habitants => {
   // create new Set professions
@@ -31,7 +32,7 @@ function reducer(state, action) {
 }
 
 const APIProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, STATE_INITIAL_VALUE);
+  const [state, dispatch] = useReducer(reducer, defaultValues);
 
   async function fetchData() {
     const localData = localStorage.getItem("habitantsLocal");
@@ -55,4 +56,4 @@ const APIProvider = ({ children }) => {
   return <APIContext.Provider value={state}>{children}</APIContext.Provider>;
 };
 
-export { APIContext, APIProvider };
+export { useAPIContext, APIProvider };

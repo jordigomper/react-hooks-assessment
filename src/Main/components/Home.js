@@ -1,7 +1,7 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { hasSome } from "../../module/utils";
 import { usePaginator } from "../../module/hooks";
-import { APIContext } from "../context";
+import { useAPIContext } from "../context";
 import Searchbar from "./Searchbar";
 import Card from "./Card";
 import FilterPanel from "./FilterPanel";
@@ -19,12 +19,10 @@ const List = styled.div`
   -webkit-transition: heigth 12s;
   transition: heigth 12s;
 
-  ${({ theme: { breakPoints } }) => `
-    @media (min-width: ${breakPoints.tablet}px) {
-      margin: 30px 0 60px 0;
-      grid-template-columns: 20% 20% 20%;
-    }
-  `}
+  @media (min-width: 950px) {
+    margin: 30px 0 60px 0;
+    grid-template-columns: 20% 20% 20%;
+  }
 `;
 
 const PaginatorPanel = styled.div`
@@ -64,7 +62,7 @@ const Home = () => {
     itemsForPage
   } = usePaginator();
 
-  const { habitants, professions } = useContext(APIContext);
+  const { habitants, professions } = useAPIContext();
   const [habitantsCookedData, setHabitantsCookedData] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -121,9 +119,9 @@ const Home = () => {
 
       <FilterPanel buttons={professions} onClick={toggleFilter} />
 
-      <List>
+      <List className="list">
         {habitantsCookedData.slice(page, page + itemsForPage).map(habitant => (
-          <Card key={habitant.id} {...habitant} />
+          <Card className="list__item" key={habitant.id} {...habitant} />
         ))}
       </List>
 
