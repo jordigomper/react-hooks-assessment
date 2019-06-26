@@ -12,14 +12,12 @@ const Container = styled.div`
     margin-right: 15px;
   }
 
-  ${({ theme: { breakPoints } }) => `
-    @media (min-width: ${breakPoints.tablet}px) {
-      font-size: 20px;
-      input {
-        font-size: 15px;
-      }
+  @media (min-width: 950px) {
+    font-size: 20px;
+    input {
+      font-size: 15px;
     }
-  `}
+  }
 `;
 
 const Searchbar = ({ value, onChange }) => {
