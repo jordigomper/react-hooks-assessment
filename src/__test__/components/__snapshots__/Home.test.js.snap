@@ -2,4 +2,6 @@
 
 exports[`Home component renders correctly 1`] = `ShallowWrapper {}`;
 
+exports[`Home component renders correctly 2`] = `ShallowWrapper {}`;
+
 exports[`Home component starts with a count of 0 1`] = `ShallowWrapper {}`;
