@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "./Button";
+import Chip from "./Chip";
 import styled from "@emotion/styled";
 
 const Panel = styled.div`
@@ -15,9 +15,9 @@ const FilterPanel = ({ buttons, ...rest }) => (
     {buttons.map(
       item =>
         typeof item === "string" && (
-          <Button key={item} {...rest}>
+          <Chip key={item} {...rest}>
             {item}
-          </Button>
+          </Chip>
         )
     )}
   </Panel>
