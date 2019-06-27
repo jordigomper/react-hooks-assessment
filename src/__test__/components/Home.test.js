@@ -2,45 +2,7 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import Home from "../../Main/components/Home";
 import * as AppContext from "../../Main/context";
-
-const gnome = {
-  age: 306,
-  friends: ["Cogwitz Chillwidget", "Tinadette Chillbuster"],
-  hair_color: "Pink",
-  height: 107.75835,
-  id: 0,
-  name: "Tobus Quickwhistle",
-  professions: [
-    "Metalworker",
-    "Woodcarver",
-    "Stonecarver",
-    " Tinker",
-    "Tailor",
-    "Potter"
-  ],
-  thumbnail:
-    "http://www.publicdomainpictures.net/pictures/10000/nahled/thinking-monkey-11282237747K8xB.jpg",
-  weight: 39.065952
-};
-
-const gnomeBadFormat = {
-  age: 306,
-  friends: ["Cogwitz Chillwidget", "Tinadette Chillbuster"],
-  hair_color: "Pink",
-  height: 107.75835,
-  name: "Tobus Quickwhistle",
-  professions: [
-    "Metalworker",
-    "Woodcarver",
-    "Stonecarver",
-    " Tinker",
-    "Tailor",
-    "Potter"
-  ],
-  thumbnail:
-    "http://www.publicdomainpictures.net/pictures/10000/nahled/thinking-monkey-11282237747K8xB.jpg",
-  weight: 39.065952
-};
+import { gnome } from "../seed";
 
 describe("Home component", () => {
   it("renders correctly", () => {
@@ -48,16 +10,30 @@ describe("Home component", () => {
 
     expect(wrapper).toMatchSnapshot();
   });
+  describe("Gnome List", () => {
+    it("render", () => {
+      jest.spyOn(AppContext, "useAPIContext").mockImplementation(() => {
+        return { habitants: [gnome] };
+      });
 
-  it("renders list", () => {
-    jest.spyOn(AppContext, "useAPIContext").mockImplementation(() => {
-      return { habitants: [gnome, gnomeBadFormat] };
+      const wrapper = mount(<Home />);
+
+      expect(wrapper.find(".list .list__item")).toHaveLength(1);
+
+      wrapper.unmount();
     });
 
-    const wrapper = mount(<Home />);
+    it("filter invalid format", () => {
+      jest.spyOn(AppContext, "useAPIContext").mockImplementation(() => {
+        const gnomeCustom = gnome;
+        delete gnomeCustom.id;
+        return { habitants: [gnomeCustom] };
+      });
 
-    console.log(wrapper.debug());
+      const wrapper = mount(<Home />);
 
-    expect(wrapper.find(".list .list__item")).toHaveLength(1);
+      expect(wrapper.find(".list .list__item")).toHaveLength(0);
+      wrapper.unmount();
+    });
   });
 });
