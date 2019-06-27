@@ -15,7 +15,7 @@ const FilterPanel = ({ buttons, ...rest }) => (
     {buttons.map(
       item =>
         typeof item === "string" && (
-          <Chip key={item} {...rest}>
+          <Chip className="filter-panel__chip" key={item} {...rest}>
             {item}
           </Chip>
         )

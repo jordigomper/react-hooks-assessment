@@ -17,3 +17,12 @@ export const gnome = {
     "http://www.publicdomainpictures.net/pictures/10000/nahled/thinking-monkey-11282237747K8xB.jpg",
   weight: 39.065952
 };
+
+export const professions = [
+  "Metalworker",
+  "Woodcarver",
+  "Stonecarver",
+  " Tinker",
+  "Tailor",
+  "Potter"
+];
