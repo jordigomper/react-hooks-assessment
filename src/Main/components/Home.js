@@ -69,7 +69,7 @@ const Home = () => {
   const [filter, setFilter] = useState([]);
 
   // add or remove the selector pushed
-  const toggleFilter = element => {
+  function toggleFilter(element) {
     const hasIndexArray = filter.indexOf(element);
     const newFilterState = JSON.parse(JSON.stringify(filter));
 
@@ -78,7 +78,7 @@ const Home = () => {
       : newFilterState.push(element);
 
     setFilter([...newFilterState]);
-  };
+  }
 
   useEffect(() => {
     const cookedData = filterData;
@@ -142,7 +142,7 @@ const Home = () => {
           </b>
         </p>
         <Icon
-          disabler={currentPage >= totalPages(habitantsCookedData)}
+          disabled={currentPage >= totalPages(habitantsCookedData)}
           onClick={() =>
             nextPage(currentPage >= totalPages(habitantsCookedData))
           }
