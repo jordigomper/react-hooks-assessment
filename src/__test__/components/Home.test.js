@@ -25,7 +25,7 @@ describe("Home component", () => {
 
     it("check valid format", () => {
       jest.spyOn(AppContext, "useAPIContext").mockImplementation(() => {
-        const gnomeCustom = gnome;
+        const gnomeCustom = JSON.stringify(gnome);
         delete gnomeCustom.id;
         return { habitants: [gnomeCustom] };
       });
@@ -37,8 +37,14 @@ describe("Home component", () => {
       wrapper.unmount();
     });
 
-    it("filter with professions", () => {
+    it("filter by professions", () => {
       jest.spyOn(AppContext, "useAPIContext").mockImplementation(() => {
+        const gnomeBoth = {
+          ...gnome,
+          name: "Metalworker",
+          id: 0,
+          professions: ["Metalworker", "Woodcarver"]
+        };
         const gnomeMetalworker = {
           ...gnome,
           name: "Metalworker",
@@ -52,7 +58,7 @@ describe("Home component", () => {
           professions: ["Woodcarver"]
         };
         return {
-          habitants: [gnome, gnomeMetalworker, gnomeWoodcarver],
+          habitants: [gnomeBoth, gnomeMetalworker, gnomeWoodcarver],
           professions
         };
       });
@@ -67,10 +73,43 @@ describe("Home component", () => {
 
       wrapper.render();
 
-      // console.log(wrapper.find(".list__item").debug());
-      console.log(wrapper.debug());
-
       expect(wrapper.find(".list__item")).toHaveLength(2);
+      wrapper.unmount();
+    });
+
+    it("filter by name", () => {
+      jest.spyOn(AppContext, "useAPIContext").mockImplementation(() => {
+        const Homer = {
+          ...gnome,
+          name: "Homer",
+          id: 0
+        };
+        const Bart = {
+          ...gnome,
+          name: "Bart",
+          id: 1
+        };
+        const Lisa = {
+          ...gnome,
+          name: "Lisa",
+          id: 2
+        };
+        return {
+          habitants: [Homer, Bart, Lisa],
+          professions
+        };
+      });
+
+      const wrapper = mount(<Home />);
+
+      const searchbar = wrapper.find(".searchbar input");
+
+      searchbar.simulate("change", { target: { value: "Homer" } });
+
+      wrapper.render();
+
+      expect(wrapper.find(".list__item")).toHaveLength(1);
+      expect(wrapper.find(".list__item").text()).toContain("Homer");
       wrapper.unmount();
     });
   });

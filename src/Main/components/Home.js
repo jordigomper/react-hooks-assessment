@@ -115,7 +115,11 @@ const Home = () => {
 
   return (
     <>
-      <Searchbar value={searchTerm} onChange={setSearchTerm} />
+      <Searchbar
+        className="searchbar"
+        value={searchTerm}
+        onChange={setSearchTerm}
+      />
 
       <FilterPanel buttons={professions} onClick={toggleFilter} />
 
