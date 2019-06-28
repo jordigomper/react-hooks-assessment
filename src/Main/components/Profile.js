@@ -104,7 +104,7 @@ const Profile = ({ id }) => {
           {height &&
           (isNumber(height) || isString(height)) &&
           Number.parseInt(height)
-            ? height
+            ? Number(height).toFixed(2)
             : "Not Found..."}
         </p>
         <p>
@@ -112,7 +112,7 @@ const Profile = ({ id }) => {
           {weight &&
           (isNumber(weight) || isString(weight)) &&
           Number.parseInt(weight)
-            ? weight
+            ? Number(weight).toFixed(2)
             : "Not Found..."}
         </p>
         <p>
