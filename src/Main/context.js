@@ -25,7 +25,10 @@ function reducer(state, action) {
   switch (action.type) {
     case "fetch":
       const professions = extractProfessions(action.data);
-      return { habitants: action.data, professions };
+      return {
+        habitants: Object.freeze(action.data),
+        professions: Object.freeze(professions)
+      };
     default:
       return state;
   }
