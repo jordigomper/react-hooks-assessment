@@ -19,15 +19,15 @@ const ImageCache = ({ src, alt, title }) => {
 
   useEffect(() => {
     const img = new Image();
-    img.onload = function() {
+    img.onload = function () {
       setImage(img.src);
     };
     // if src prop isn't exist, add phantom image
-    img.onerror = function() {
+    img.onerror = function () {
       setImage(phantom_gnom);
     };
     img.src = src;
-  }, []);
+  }, [src]);
 
   // while the image is loading, to show custom background
   return !image ? (
@@ -40,13 +40,13 @@ const ImageCache = ({ src, alt, title }) => {
 Image.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 Image.defaultProps = {
   src: "",
   alt: "Not Found",
-  title: "Image not found"
+  title: "Image not found",
 };
 
 export default ImageCache;
