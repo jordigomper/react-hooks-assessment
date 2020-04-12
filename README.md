@@ -2,7 +2,7 @@
 
 Near for mountains are do a little town where they are living a smalls habitants. They are gnoms, antisocial gnoms! But... They are great workers!
 
-With this App you can meet the customs and jobs theirs.
+With this App you can meet the customs and jobs of the gnoms.
 
 You can visit: http://gnomebook.surge.sh
 
@@ -14,10 +14,30 @@ You can visit: http://gnomebook.surge.sh
 
 # Test
 
-\*. npm test.
+- npm test.
 
-#To Do
+# To Do
 
-_. Add work icons in the Card.
-_. In the profile, it will can navigate for others friends profiles.
-\*. improve the tests.
+- Add work icons in the Card.
+- In the profile, it will can navigate for others friends profiles.
+- improve the tests.
+
+# Tech Stack
+
+- React 16.8.6
+
+### from css:
+
+- Emotion
+  - emotion/core
+  - emotion/styled
+  - emotion-theming
+
+### router:
+
+- Reach router
+
+### test:
+
+- Jest
+- Enzyme

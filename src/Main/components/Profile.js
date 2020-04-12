@@ -1,10 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { APIContext } from "../context";
+import { useAPIContext } from "../context";
 import { isArray, isString, isNumber } from "util";
 import Image from "./Image";
 import styled from "@emotion/styled";
 import { navigate } from "@reach/router";
+
+const determineSexe = /(?:^|(?:\.))(\w+).([aeiou]\s)/i;
 
 const Content = styled.div`
   margin: 5% 0 0 0;
@@ -33,15 +35,13 @@ const ButtonBack = styled.div`
   border-radius: 25px;
   background-color: red;
   font-weight: bold;
-  ${({ theme: { breakPoints } }) => `
-    @media (min-width: ${breakPoints.tablet}px) {
-      left: 150px;
-    }
-  `}
+  @media (min-width: 950px) {
+    left: 150px;
+  }
 `;
 
 const Profile = ({ id }) => {
-  const { habitants } = useContext(APIContext);
+  const { habitants } = useAPIContext();
   const [profile, setProfile] = useState(null);
   const [isFeching, setIsFeching] = useState(true);
 
@@ -81,52 +81,58 @@ const Profile = ({ id }) => {
     <Content>
       <Image src={thumbnail} alt={name} title={name} />
       <Description>
-        {name && isString(name) && (
-          <p>
-            <b>Name: </b>
-            {name ? name : "Not found..."}
-          </p>
-        )}
-        {age && isNumber(age) && (
-          <p>
-            <b>Age: </b>
-            {age ? age : "Not Found..."}
-          </p>
-        )}
-        {height && isNumber(height) && (
-          <p>
-            <b>Height: </b>
-            {height ? height : "Not Found..."}
-          </p>
-        )}
-        {weight && isNumber(weight) && (
-          <p>
-            <b>Weight: </b>
-            {weight ? weight : "Not Found..."}
-          </p>
-        )}
-
-        {hair_color && isString(hair_color) && (
-          <p>
-            <b>Hair color: </b>
-            {hair_color ? hair_color : "Not Found..."}
-          </p>
-        )}
-        {professions && isArray(professions) && (
-          <p>
-            <b>Professions: </b>
-            {professions.length > 0 ? professions.join(", ") : "Unemployed"}.
-          </p>
-        )}
-        {friends && isArray(friends) && (
-          <p>
-            <b>Friends: </b>
-            {friends.length > 0
-              ? friends.join(", ")
-              : "He/She not have, He/She is a lone ranger"}
-            .
-          </p>
-        )}
+        <p>
+          <b>Name: </b>
+          {name && isString(name) ? name : "Not found..."}
+        </p>
+        <p>
+          <b>Age: </b>
+          {age && (isNumber(age) || isString(age)) && Number.parseInt(age)
+            ? age
+            : "Not Found..."}
+        </p>
+        <p>
+          <b>Sexe: </b>
+          {name && isString(name)
+            ? determineSexe.test(name)
+              ? "Female"
+              : "Male"
+            : "Undefined."}
+        </p>
+        <p>
+          <b>Height: </b>
+          {height &&
+          (isNumber(height) || isString(height)) &&
+          Number.parseInt(height)
+            ? Number(height).toFixed(2)
+            : "Not Found..."}
+        </p>
+        <p>
+          <b>Weight: </b>
+          {weight &&
+          (isNumber(weight) || isString(weight)) &&
+          Number.parseInt(weight)
+            ? Number(weight).toFixed(2)
+            : "Not Found..."}
+        </p>
+        <p>
+          <b>Hair color: </b>
+          {hair_color && isString(hair_color) ? hair_color : "Not Found..."}
+        </p>
+        <p>
+          <b>Professions: </b>
+          {isArray(professions) && professions.length > 0
+            ? professions.join(", ")
+            : "Unemployed"}
+          .
+        </p>
+        <p>
+          <b>Friends: </b>
+          {isArray(friends) && friends.length > 0
+            ? friends.join(", ")
+            : "He/She not have, He/She is a lone ranger"}
+          .
+        </p>
       </Description>
       <ButtonBack onClick={() => navigate("/")}>BACK</ButtonBack>
     </Content>

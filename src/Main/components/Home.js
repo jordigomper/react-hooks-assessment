@@ -1,7 +1,7 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { hasSome } from "../../module/utils";
 import { usePaginator } from "../../module/hooks";
-import { APIContext } from "../context";
+import { useAPIContext } from "../context";
 import Searchbar from "./Searchbar";
 import Card from "./Card";
 import FilterPanel from "./FilterPanel";
@@ -11,8 +11,6 @@ import { isString, isNumber } from "util";
 const arrow_r = require("../../assets/icons/chevron_right.svg");
 const arrow_l = require("../../assets/icons/chevron_left.svg");
 
-const SKIP_PAGINATION = 6;
-
 const List = styled.div`
   display: grid;
   justify-content: center;
@@ -21,12 +19,10 @@ const List = styled.div`
   -webkit-transition: heigth 12s;
   transition: heigth 12s;
 
-  ${({ theme: { breakPoints } }) => `
-    @media (min-width: ${breakPoints.tablet}px) {
-      margin: 30px 0 60px 0;
-      grid-template-columns: 20% 20% 20%;
-    }
-  `}
+  @media (min-width: 950px) {
+    margin: 30px 0 60px 0;
+    grid-template-columns: 20% 20% 20%;
+  }
 `;
 
 const PaginatorPanel = styled.div`
@@ -43,9 +39,16 @@ const PaginatorPanel = styled.div`
 `;
 
 const Icon = styled.img`
+  cursor: pointer;
   width: 40px;
   background: #4267b273;
   border-radius: 100%;
+  ${({ disabled }) =>
+    disabled &&
+    `
+    cursor: initial;
+    opacity: 0;
+  `};
 `;
 
 const Home = () => {
@@ -55,26 +58,27 @@ const Home = () => {
     nextPage,
     prevPage,
     currentPage,
-    totalPages
+    totalPages,
+    itemsForPage
   } = usePaginator();
 
-  const { habitants, professions } = useContext(APIContext);
+  const { habitants, professions } = useAPIContext();
   const [habitantsCookedData, setHabitantsCookedData] = useState([]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState([]);
 
-  const toggleFilter = element => {
+  // add or remove the selector pushed
+  function toggleFilter(element) {
     const hasIndexArray = filter.indexOf(element);
     const newFilterState = JSON.parse(JSON.stringify(filter));
 
-    // add or remove the selector pushed
     hasIndexArray > -1
       ? newFilterState.splice(hasIndexArray, 1)
       : newFilterState.push(element);
 
     setFilter([...newFilterState]);
-  };
+  }
 
   useEffect(() => {
     const cookedData = filterData;
@@ -111,20 +115,23 @@ const Home = () => {
 
   return (
     <>
-      <Searchbar value={searchTerm} onChange={setSearchTerm} />
+      <Searchbar
+        className="searchbar"
+        value={searchTerm}
+        onChange={setSearchTerm}
+      />
 
       <FilterPanel buttons={professions} onClick={toggleFilter} />
 
-      <List>
-        {habitantsCookedData
-          .slice(page, page + SKIP_PAGINATION)
-          .map(habitant => (
-            <Card key={habitant.id} {...habitant} />
-          ))}
+      <List className="list">
+        {habitantsCookedData.slice(page, page + itemsForPage).map(habitant => (
+          <Card className="list__item" key={habitant.id} {...habitant} />
+        ))}
       </List>
 
       <PaginatorPanel>
         <Icon
+          disabled={currentPage === 1}
           onClick={() => prevPage(currentPage === 1)}
           src={arrow_l}
           alt={"previous"}
@@ -135,6 +142,7 @@ const Home = () => {
           </b>
         </p>
         <Icon
+          disabled={currentPage >= totalPages(habitantsCookedData)}
           onClick={() =>
             nextPage(currentPage >= totalPages(habitantsCookedData))
           }

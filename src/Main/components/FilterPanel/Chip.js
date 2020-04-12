@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 
-const ButtonStyle = styled.div`
+const ChipStyle = styled.div`
   cursor: pointer;
   margin: 0 5px 5px 0;
   padding: 5px 10px;
@@ -10,27 +10,27 @@ const ButtonStyle = styled.div`
   border-radius: 15px;
 `;
 
-const Button = ({ children, onClick }) => {
+const Chip = ({ children, onClick }) => {
   const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     onClick(children);
     setIsActive(!isActive);
   };
   return (
-    <ButtonStyle onClick={handleClick} isActive={isActive}>
+    <ChipStyle onClick={handleClick} isActive={isActive}>
       {children}
-    </ButtonStyle>
+    </ChipStyle>
   );
 };
 
-Button.propTypes = {
+Chip.propTypes = {
   children: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };
 
-Button.propTypes = {
+Chip.propTypes = {
   children: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };
 
-export default Button;
+export default Chip;

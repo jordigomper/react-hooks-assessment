@@ -33,5 +33,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Near for mountains are do a little town where they are living a smalls habitants. They are gnoms, antisocial gnoms! But... They are great workers!",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordigomper/gnombook.git"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "emotion"
+  ],
+  "author": "Jordi Gomez Perez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordigomper/gnombook/issues"
+  },
+  "homepage": "https://github.com/jordigomper/gnombook#readme"
 }
