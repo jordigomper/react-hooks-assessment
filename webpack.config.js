@@ -24,8 +24,6 @@ const imageRules = {
   },
 };
 
-console.log("process.env", process.env);
-
 module.exports = {
   output: {
     filename: "app.[contentHash].js",
