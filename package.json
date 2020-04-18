@@ -1,23 +1,53 @@
 {
   "name": "axa_town_app",
+  "author": "Jordi Gomez Perez",
+  "license": "ISC",
+  "homepage": "http://gnomebook.surge.sh/",
+  "description": "Near for mountains are do a little town where they are living a smalls habitants. They are gnoms, antisocial gnoms! But... They are great workers!",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.12",
-    "@reach/router": "^1.2.1",
-    "emotion-theming": "^10.0.10",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+  "main": "index.js",
+  "keywords": [
+    "react",
+    "hooks",
+    "emotion"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordigomper/gnombook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jordigomper/gnombook/issues"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "interpolate-html-plugin": "^3.0.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "7.9.5",
+    "@babel/preset-react": "7.9.4",
+    "@emotion/core": "10.0.10",
+    "@emotion/styled": "10.0.12",
+    "@reach/router": "1.2.1",
+    "babel-loader": "8.1.0",
+    "css-loader": "3.5.2",
+    "emotion-theming": "10.0.10",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "html-webpack-plugin": "4.2.0",
+    "style-loader": "1.1.4",
+    "url-loader": "4.1.0",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,23 +63,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "Near for mountains are do a little town where they are living a smalls habitants. They are gnoms, antisocial gnoms! But... They are great workers!",
-  "main": "index.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jordigomper/gnombook.git"
-  },
-  "keywords": [
-    "react",
-    "hooks",
-    "emotion"
-  ],
-  "author": "Jordi Gomez Perez",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jordigomper/gnombook/issues"
-  },
-  "homepage": "http://gnomebook.surge.sh/"
+  }
 }

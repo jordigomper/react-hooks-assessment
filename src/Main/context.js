@@ -43,7 +43,9 @@ const APIProvider = ({ children }) => {
     const localData = localStorage.getItem("habitantsLocal");
     localData && dispatch({ type: "fetch", data: JSON.parse(localData) });
 
-    const response = await fetch(process.env.REACT_APP_API_URL)
+    const response = await fetch(
+      "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json"
+    )
       .then((response) => response.json())
       .then(({ Brastlewark }) => Brastlewark)
       .catch((error) => console.error(error.message));
