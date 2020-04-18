@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 
+const manifest = require("./public/manifest.json");
+
 const javascriptRules = {
   test: /\.js$/,
   exclude: /node_modules/,
@@ -37,21 +39,7 @@ module.exports = {
       favicon: "./public/favicon.ico",
     }),
     new ManifestPlugin({
-      seed: {
-        short_name: "GnomeBook",
-        name: "Social gnome application",
-        icons: [
-          {
-            src: "favicon.ico",
-            sizes: "64x64 32x32 24x24 16x16",
-            type: "image/x-icon",
-          },
-        ],
-        start_url: ".",
-        display: "standalone",
-        theme_color: "#4267b2",
-        background_color: "#ffffff",
-      },
+      seed: manifest,
     }),
   ],
 };
