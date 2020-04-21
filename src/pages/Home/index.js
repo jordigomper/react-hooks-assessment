@@ -7,8 +7,8 @@ import { hasSome } from "../../module/utils";
 import { usePaginator } from "../../module/hooks";
 import { useAPIContext } from "../../App/context";
 
-const arrow_r = require("../../assets/icons/chevron_right.svg");
-const arrow_l = require("../../assets/icons/chevron_left.svg");
+const rightArrow = require("../../assets/icons/chevron_right.svg");
+const leftArrow = require("../../assets/icons/chevron_left.svg");
 
 export const Home = () => {
   const {
@@ -92,7 +92,7 @@ export const Home = () => {
         <Icon
           disabled={currentPage === 1}
           onClick={() => prevPage(currentPage === 1)}
-          src={arrow_l}
+          src={leftArrow}
           alt={"previous"}
         />
         <p>
@@ -105,7 +105,7 @@ export const Home = () => {
           onClick={() =>
             nextPage(currentPage >= totalPages(habitantsCookedData))
           }
-          src={arrow_r}
+          src={rightArrow}
           alt={"next"}
         />
       </PaginatorPanel>
