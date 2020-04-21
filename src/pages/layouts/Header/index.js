@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-
+import React from "react";
 import { Container } from "./elements";
 
 export const Header = ({ children }) => {
