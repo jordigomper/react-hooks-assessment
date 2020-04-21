@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { hasSome } from "../../module/utils";
-import { usePaginator } from "../../module/hooks";
-import { useAPIContext } from "../context";
-import Searchbar from "./Searchbar";
-import Card from "./Card";
-import FilterPanel from "./FilterPanel";
 import styled from "@emotion/styled";
 import { isString, isNumber } from "util";
 
-const arrow_r = require("../../assets/icons/chevron_right.svg");
-const arrow_l = require("../../assets/icons/chevron_left.svg");
+import { Searchbar, Card, FilterPanel } from "../components";
+
+import { hasSome } from "../module/utils";
+import { usePaginator } from "../module/hooks";
+import { useAPIContext } from "../context";
+
+const arrow_r = require("../assets/icons/chevron_right.svg");
+const arrow_l = require("../assets/icons/chevron_left.svg");
 
 const List = styled.div`
   display: grid;
@@ -59,7 +59,7 @@ const Home = () => {
     prevPage,
     currentPage,
     totalPages,
-    itemsForPage
+    itemsForPage,
   } = usePaginator();
 
   const { habitants, professions } = useAPIContext();
@@ -91,16 +91,14 @@ const Home = () => {
 
     // check id format
     cookedData = cookedData.filter(
-      hab => hab.hasOwnProperty("id") && (isNumber(hab.id) || isString(hab.id))
+      (hab) =>
+        hab.hasOwnProperty("id") && (isNumber(hab.id) || isString(hab.id))
     );
 
     // filter searchbar
     if (searchTerm.length > 0) {
       cookedData = cookedData.filter(({ name }) =>
-        name
-          .trim()
-          .toLowerCase()
-          .includes(searchTerm.trim().toLowerCase())
+        name.trim().toLowerCase().includes(searchTerm.trim().toLowerCase())
       );
     }
 
@@ -124,9 +122,11 @@ const Home = () => {
       <FilterPanel buttons={professions} onClick={toggleFilter} />
 
       <List className="list">
-        {habitantsCookedData.slice(page, page + itemsForPage).map(habitant => (
-          <Card className="list__item" key={habitant.id} {...habitant} />
-        ))}
+        {habitantsCookedData
+          .slice(page, page + itemsForPage)
+          .map((habitant) => (
+            <Card className="list__item" key={habitant.id} {...habitant} />
+          ))}
       </List>
 
       <PaginatorPanel>

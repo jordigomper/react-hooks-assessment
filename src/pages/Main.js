@@ -1,26 +1,16 @@
 import React from "react";
 import { Router } from "@reach/router";
-import { APIProvider } from "./context";
 import { ThemeProvider } from "emotion-theming";
-import Home from "./components/Home";
-import Profile from "./components/Profile";
-import { theme } from "../theme.js";
 import styled from "@emotion/styled";
 
-const Header = styled.h1`
-  margin: 0;
-  padding: 20px;
-  background-color: #4267b2;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ${({ theme: { breakPoints } }) => `
-    @media (min-width: ${breakPoints.tablet}px) {
-      font-size: 80px;
-    }
-  `}
-`;
+// import Header from "./layouts/Header";
+import { Header } from "./layouts";
+import Home from "./Home";
+import Profile from "./Profile";
+
+import { APIProvider } from "../context";
+
+import { theme } from "../theme.js";
 
 const Main = styled.div`
   min-height: 100vh;

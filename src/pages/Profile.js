@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useAPIContext } from "../context";
 import { isArray, isString, isNumber } from "util";
-import Image from "./Image";
 import styled from "@emotion/styled";
 import { navigate } from "@reach/router";
+
+import { ImageCache } from "../components";
+import { useAPIContext } from "../context";
 
 const determineSexe = /(?:^|(?:\.))(\w+).([aeiou]\s)/i;
 
@@ -50,7 +51,7 @@ const Profile = ({ id }) => {
       setIsFeching(true);
 
       const index = habitants.findIndex(
-        habitant =>
+        (habitant) =>
           habitant.hasOwnProperty("id") &&
           (typeof habitant.id === "string" ||
             typeof habitant.id === "number") &&
@@ -74,12 +75,12 @@ const Profile = ({ id }) => {
     professions,
     hair_color,
     height,
-    weight
+    weight,
   } = profile;
 
   return (
     <Content>
-      <Image src={thumbnail} alt={name} title={name} />
+      <ImageCache src={thumbnail} alt={name} title={name} />
       <Description>
         <p>
           <b>Name: </b>
@@ -140,11 +141,11 @@ const Profile = ({ id }) => {
 };
 
 Profile.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
 };
 
 Profile.defaultProps = {
-  id: null
+  id: null,
 };
 
 export default Profile;

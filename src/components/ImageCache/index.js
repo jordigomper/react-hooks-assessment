@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import styled from "@emotion/styled";
 
-const phantom_gnom = require("../../assets/img/top_secret.jpg");
+import { EmptyBackground, Img } from "./elements";
 
-const Img = styled.img`
-  object-fit: cover;
-  height: 130px;
-`;
+const phantom_gnome = require("../../assets/img/top_secret.jpg");
 
-const EmptyBackground = styled.img`
-  height: 130px;
-  background-color: gray;
-`;
-
-const ImageCache = ({ src, alt, title }) => {
+export const ImageCache = ({ src, alt, title }) => {
   const [image, setImage] = useState();
 
   useEffect(() => {
@@ -24,7 +15,7 @@ const ImageCache = ({ src, alt, title }) => {
     };
     // if src prop isn't exist, add phantom image
     img.onerror = function () {
-      setImage(phantom_gnom);
+      setImage(phantom_gnome);
     };
     img.src = src;
   }, [src]);
@@ -37,16 +28,14 @@ const ImageCache = ({ src, alt, title }) => {
   );
 };
 
-Image.propTypes = {
+ImageCache.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-Image.defaultProps = {
+ImageCache.defaultProps = {
   src: "",
   alt: "Not Found",
   title: "Image not found",
 };
-
-export default ImageCache;
