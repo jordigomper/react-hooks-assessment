@@ -13,11 +13,11 @@ const determineGenre = /(?:^|(?:\.))(\w+).([aeiou]\s)/i;
 export const Profile = ({ id }) => {
   const { habitants } = useAPIContext();
   const [profile, setProfile] = useState(null);
-  const [isFeching, setIsFeching] = useState(true);
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     if (id && habitants.length > 0) {
-      setIsFeching(true);
+      setIsFetching(true);
 
       const index = habitants.findIndex(
         (habitant) =>
@@ -28,11 +28,11 @@ export const Profile = ({ id }) => {
       );
       index >= 0 ? setProfile(habitants[index]) : setProfile("undefined");
 
-      setIsFeching(false);
+      setIsFetching(false);
     }
   }, [id, habitants]);
 
-  if (isFeching) return <div>"loading..."</div>;
+  if (isFetching) return <div>"loading..."</div>;
   if (profile === "undefined" || typeof profile !== "object")
     return <div>Not Found :'(</div>;
 
@@ -62,7 +62,7 @@ export const Profile = ({ id }) => {
             : "Not Found..."}
         </p>
         <p>
-          <b>Sexe: </b>
+          <b>Genre: </b>
           {name && isString(name)
             ? determineGenre.test(name)
               ? "Female"
