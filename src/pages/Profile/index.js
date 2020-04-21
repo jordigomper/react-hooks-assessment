@@ -8,7 +8,7 @@ import { Content, Description, ButtonBack } from "./elements";
 
 import { useAPIContext } from "../../App/context";
 
-const determineSexe = /(?:^|(?:\.))(\w+).([aeiou]\s)/i;
+const determineGenre = /(?:^|(?:\.))(\w+).([aeiou]\s)/i;
 
 export const Profile = ({ id }) => {
   const { habitants } = useAPIContext();
@@ -64,7 +64,7 @@ export const Profile = ({ id }) => {
         <p>
           <b>Sexe: </b>
           {name && isString(name)
-            ? determineSexe.test(name)
+            ? determineGenre.test(name)
               ? "Female"
               : "Male"
             : "Undefined."}
