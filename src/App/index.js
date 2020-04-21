@@ -9,6 +9,8 @@ import { APIProvider } from "./context";
 
 import { theme } from "./theme.js";
 
+import "./global.css";
+
 export default () => {
   return (
     <Main>
