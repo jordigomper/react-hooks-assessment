@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { EmptyBackground, Img } from "./elements";
 
-const phantom_gnome = require("../../assets/img/top_secret.jpg");
+const phantomGnome = require("../../assets/img/top_secret.jpg");
 
 export const ImageCache = ({ src, alt, title }) => {
   const [image, setImage] = useState();
@@ -15,7 +15,7 @@ export const ImageCache = ({ src, alt, title }) => {
     };
     // if src prop isn't exist, add phantom image
     img.onerror = function () {
-      setImage(phantom_gnome);
+      setImage(phantomGnome);
     };
     img.src = src;
   }, [src]);
