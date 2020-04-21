@@ -9,7 +9,7 @@ import { APIProvider } from "./context";
 
 import { theme } from "./theme.js";
 
-export const App = () => {
+export default () => {
   return (
     <Main>
       <ThemeProvider theme={theme}>
@@ -24,5 +24,3 @@ export const App = () => {
     </Main>
   );
 };
-
-export default App;
