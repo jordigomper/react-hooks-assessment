@@ -5,7 +5,7 @@ import { navigate } from "@reach/router";
 import { ImageCache } from "../";
 import { Container } from "./elements";
 
-const phantom_gnome = require("../../assets/img/top_secret.jpg");
+const phantomGnome = require("../../assets/img/top_secret.jpg");
 
 export const Card = ({ id, thumbnail, name }) => {
   return (
@@ -24,5 +24,5 @@ Card.propTypes = {
 
 Card.defaultProps = {
   name: "",
-  thumbnail: phantom_gnome,
+  thumbnail: phantomGnome,
 };
