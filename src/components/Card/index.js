@@ -5,8 +5,6 @@ import { navigate } from "@reach/router";
 import { ImageCache } from "../";
 import { Container } from "./elements";
 
-const phantomGnome = require("../../assets/img/top_secret.jpg");
-
 export const Card = ({ id, thumbnail, name }) => {
   return (
     <Container onClick={() => navigate(`/profile/${id}`)}>
@@ -19,10 +17,9 @@ export const Card = ({ id, thumbnail, name }) => {
 Card.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string,
 };
 
 Card.defaultProps = {
   name: "",
-  thumbnail: phantomGnome,
 };
