@@ -110,11 +110,9 @@ export const Profile = ({ id }) => {
 };
 
 Profile.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 Profile.defaultProps = {
   id: null,
 };
-
-export default Profile;
