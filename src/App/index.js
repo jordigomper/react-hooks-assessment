@@ -1,9 +1,9 @@
 import React from "react";
 import { ThemeProvider } from "emotion-theming";
 
-import { Header } from "../pages/layouts";
+import { Header } from "../views/layouts";
 import { Main, RouterStyled } from "./elements";
-import { Home, Profile } from "../pages";
+import { Home, Profile } from "../views";
 
 import { APIProvider } from "./context";
 

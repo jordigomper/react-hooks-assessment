@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { Profile } from "../../pages";
+import { Profile } from "../../views";
 import * as AppContext from "../../App/context";
 import { barto, milhouse, burns, lisa } from "../__mocks__/habitants";
 
