@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 
 import { EmptyBackground, Img } from "./elements";
 
-const phantomGnome = require("../../assets/img/top_secret.jpg");
+const imageNotAvailable = require("../../assets/img/top_secret.jpg");
+const backgroundImage = require("../../assets/img/empty-profile.png");
 
 export const ImageCache = ({ src, alt, title }) => {
   const [image, setImage] = useState();
@@ -15,14 +16,14 @@ export const ImageCache = ({ src, alt, title }) => {
     };
     // if src prop isn't exist, add phantom image
     img.onerror = function () {
-      setImage(phantomGnome);
+      setImage(imageNotAvailable);
     };
     img.src = src;
   }, [src]);
 
   // while the image is loading, to show custom background
   return !image ? (
-    <EmptyBackground />
+    <EmptyBackground src={backgroundImage} alt={alt} title={title} />
   ) : (
     <Img src={image} alt={alt} title={title} />
   );

@@ -7,5 +7,5 @@ export const Img = styled.img`
 
 export const EmptyBackground = styled.img`
   height: 130px;
-  background-color: gray;
+  background-position: center;
 `;
