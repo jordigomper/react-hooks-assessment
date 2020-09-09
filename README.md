@@ -6,23 +6,25 @@ With this App you can meet the customs and jobs of the gnoms.
 
 You can visit: http://gnomebook.surge.sh
 
-# Install
+# Get started.
 
 1. download this repository.
 2. npm install.
-3. have fun!
+3. npm run dev.
+4. have fun!
 
 # Test
 
 - npm test.
 
-# To Do
+# To Do.
 
 - Add work icons in the Card.
 - In the profile, it will can navigate for others friends profiles.
-- improve the tests.
+- Improve the tests.
+- Add TypeScript.
 
-# Tech Stack
+# Tech Stack.
 
 - React 16.8.6
 
